@@ -299,7 +299,7 @@ class ReactWizard extends React.Component {
         // });
     }
     render() {
-        console.debug(this.state)
+
         return (
             <div className="wizard-container" ref="wizard">
                 <Card className="card card-wizard active" variant={this.state.color}>
@@ -327,50 +327,6 @@ class ReactWizard extends React.Component {
                                             highestStep={this.state.highestStep}
                                             color={this.props.color}
                                         />
-                                        {/* <div className="progress-with-circle">
-
-                                            <ProgressBar now={((this.state.currentStep + 1) / this.props.steps.length) * 100} 
-                                            />
-                                        </div>
-                                        <Nav variant="pills">
-                                            {this.props.steps.map((prop, key) => {
-                                                return (
-                                                    <Nav.Item key={key} style={{ width: this.state.width }}>
-                                                        <Nav.Link eventKey={key}
-                                                            className={classnames(
-                                                                { active: key === this.state.currentStep },
-                                                                { checked: key <= this.state.highestStep }
-                                                            )}
-
-                                                        >
-                                                            {prop.stepIcon !== undefined &&
-                                                                prop.stepIcon !== "" ? (
-                                                                    <i className={prop.stepIcon} />
-                                                                ) : null}
-                                                            {this.props.progressbar ? (
-                                                                <p>{prop.stepName}</p>
-                                                            ) : (
-                                                                    prop.stepName
-                                                                )}
-                                                        </Nav.Link>
-                                                    </Nav.Item>
-                                                );
-                                            })}
-                                        </Nav> */}
-                                        {/* {this.props.progressbar ? null : (
-                                            <div className="moving-tab" style={this.state.movingTabStyle}>
-                                                {this.props.steps[this.state.currentStep].stepIcon !==
-                                                    undefined &&
-                                                    this.props.steps[this.state.currentStep].stepIcon !== "" ? (
-                                                        <i
-                                                            className={
-                                                                this.props.steps[this.state.currentStep].stepIcon
-                                                            }
-                                                        />
-                                                    ) : null}
-                                                {this.props.steps[this.state.currentStep].stepName}
-                                            </div>
-                                        )} */}
                                     </div>
                                 </Card.Header>
                             ) : null}
