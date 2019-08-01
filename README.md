@@ -6,11 +6,12 @@
 
 Describe reactbootstrap-wizard here.
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+Based on https://github.com/creativetimofficial/react-bootstrap-wizard
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+## why
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+Original project is based on reactstrap. This is the react bootstrap version with little bit twekes and with progressbar only.
+
+## notes
+
+react-bootstrap does not include in the final package. Need to install it separately when using
