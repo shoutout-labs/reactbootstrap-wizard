@@ -23,7 +23,7 @@ const ReactWizardWrapper = (props) => {
     return <ReactWizard {...props} stepRefs={stepRefs} />
 }
 
-const StepProgress = ({ steps, currentStep, highestStep, color }) => {
+const StepProgress = ({ steps, currentStep, highestStep, color ,stepButtonClasses}) => {
     let progressValue = 0;
     switch (currentStep) {
         case 0: {
@@ -58,7 +58,7 @@ const StepProgress = ({ steps, currentStep, highestStep, color }) => {
                         <Col key={key}>
                             <Nav.Item >
                                 <Nav.Link eventKey={key}
-                                    className={key === currentStep || key <= highestStep ? 'active checked bg-' + color : ''}
+                                    className={(stepButtonClasses?stepButtonClasses:'')+(key === currentStep || key <= highestStep ? ' active checked bg-' + color: '')}
 
 
 
@@ -326,6 +326,7 @@ class ReactWizard extends React.Component {
                                             currentStep={this.state.currentStep}
                                             highestStep={this.state.highestStep}
                                             color={this.props.color}
+                                            stepButtonClasses={this.props.stepButtonClasses}
                                         />
                                     </div>
                                 </Card.Header>
@@ -418,7 +419,8 @@ ReactWizard.defaultProps = {
     previousButtonText: "Previous",
     finishButtonText: "Finish",
     nextButtonText: "Next",
-    color: "primary"
+    color: "primary",
+    stepButtonClasses:"px-3 rounded"
 };
 
 ReactWizard.propTypes = {
@@ -426,6 +428,7 @@ ReactWizard.propTypes = {
     previousButtonClasses: PropTypes.string,
     finishButtonClasses: PropTypes.string,
     nextButtonClasses: PropTypes.string,
+    stepButtonClasses:PropTypes.string,
     headerTextCenter: PropTypes.bool,
     navSteps: PropTypes.bool,
     validate: PropTypes.bool,

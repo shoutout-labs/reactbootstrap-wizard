@@ -23,3 +23,7 @@
 .wizard-container .nav {
   position: relative;
 }
+
+.wizard-container .nav-item .rounded{
+  border-radius: 5rem !important;
+}
