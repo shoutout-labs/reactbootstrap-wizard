@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import './index.css';
 let stepRefs = {};
-const ReactWizardWrapper = (props) => {
+const ReactWizard = (props) => {
 
     props.steps.forEach(step => {
         if (!stepRefs[step.stepName]) {
@@ -20,7 +20,7 @@ const ReactWizardWrapper = (props) => {
     });
 
 
-    return <ReactWizard {...props} stepRefs={stepRefs} />
+    return <Wizard {...props} stepRefs={stepRefs} />
 }
 
 const StepProgress = ({ steps, currentStep, highestStep, color ,stepButtonClasses}) => {
@@ -79,7 +79,7 @@ const StepProgress = ({ steps, currentStep, highestStep, color ,stepButtonClasse
     </React.Fragment>
     );
 }
-class ReactWizard extends React.Component {
+class Wizard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -414,7 +414,7 @@ class ReactWizard extends React.Component {
     }
 }
 
-ReactWizard.defaultProps = {
+Wizard.defaultProps = {
     validate: false,
     previousButtonText: "Previous",
     finishButtonText: "Finish",
@@ -448,4 +448,4 @@ ReactWizard.propTypes = {
     ).isRequired
 };
 
-export default ReactWizardWrapper;
+export default ReactWizard;
