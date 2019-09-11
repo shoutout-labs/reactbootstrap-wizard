@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from "react";
+import React, { useRef } from "react";
 import {
     Card,
     Nav,
@@ -334,8 +334,7 @@ class Wizard extends React.Component {
                         <Card.Body>
                             <Tab.Content>
                                 {this.props.steps.map((prop, key) => {
-                                    const Component = forwardRef(prop.component);
-
+                               
                                     return (
                                         <Tab.Pane
                                             eventKey={key}
@@ -345,11 +344,11 @@ class Wizard extends React.Component {
                                             })}
                                         >
                                             {typeof prop.component === "function" || typeof prop.component === "object" ? (
-                                                <Component
-                                                    ref={stepRefs[prop.stepName]}
-                                                    wizardData={this.state.wizardData}
-                                                    {...prop.stepProps}
-                                                />
+                                                <prop.component
+                                                ref={stepRefs[prop.stepName]}
+                                                wizardData={this.state.wizardData}
+                                                {...prop.stepProps}
+                                            />
                                             ) : (
                                                     <div ref={prop.stepName}>{prop.component}</div>
                                                 )}
