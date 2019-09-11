@@ -334,7 +334,7 @@ class Wizard extends React.Component {
                         <Card.Body>
                             <Tab.Content>
                                 {this.props.steps.map((prop, key) => {
-                               
+                               const Component = React.forwardRef(prop.component);
                                     return (
                                         <Tab.Pane
                                             eventKey={key}
@@ -344,7 +344,7 @@ class Wizard extends React.Component {
                                             })}
                                         >
                                             {typeof prop.component === "function" || typeof prop.component === "object" ? (
-                                                <prop.component
+                                                <Component
                                                 ref={stepRefs[prop.stepName]}
                                                 wizardData={this.state.wizardData}
                                                 {...prop.stepProps}
