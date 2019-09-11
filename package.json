@@ -1,6 +1,6 @@
 {
   "name": "reactbootstrap-wizard-rb",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "reactbootstrap-wizard React component",
   "main": "lib/index.js",
   "module": "es/index.js",
