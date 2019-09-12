@@ -17,5 +17,4 @@ Original project is based on reactstrap. This is the react bootstrap version wit
 react-bootstrap does not include in the final package. Need to install it separately when using
 
 ## updates
-* Component state will not automatically add to the wizard data (Since component state may have different data which does not required to be track in a global state)
-* setWizardData function will receive as a property to the components and wizard data can be set using it.
+* Removed wizard data since it is erroneous if click on previous button and had to set state. Use state in the root component and pass properties as required to the steps with stepProps (manage state in the root component)

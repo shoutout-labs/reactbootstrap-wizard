@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef ,useMemo} from "react";
 import {
     Card,
     Nav,
@@ -90,8 +90,7 @@ class Wizard extends React.Component {
             nextButton: this.props.steps.length > 1 ? true : false,
             previousButton: false,
             finishButton: this.props.steps.length === 1 ? true : false,
-            wizardData:
-                this.props.wizardData !== undefined ? this.props.wizardData : {},
+
             // movingTabStyle: {
             //     transition: "transform 0s"
             // }
@@ -144,12 +143,6 @@ class Wizard extends React.Component {
             }
             if (validationState) {
                 this.setState({
-                    // wizardData: {
-                    //     ...this.state.wizardData,
-                    //     [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                    //         this.props.steps[this.state.currentStep].stepName
-                    //     ].current.state
-                    // },
                     currentStep: key,
                     highestStep:
                         key > this.state.highestStep ? key : this.state.highestStep,
@@ -180,12 +173,7 @@ class Wizard extends React.Component {
                 }
                 let key = this.state.currentStep + 1;
                 this.setState({
-                    // wizardData: {
-                    //     ...this.state.wizardData,
-                    //     [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                    //         this.props.steps[this.state.currentStep].stepName
-                    //     ].current.state
-                    // },
+                   
                     currentStep: key,
                     highestStep:
                         key > this.state.highestStep ? key : this.state.highestStep,
@@ -203,12 +191,7 @@ class Wizard extends React.Component {
         var key = this.state.currentStep - 1;
         if (key >= 0) {
             this.setState({
-                // wizardData: {
-                //     ...this.state.wizardData,
-                //     [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                //         this.props.steps[this.state.currentStep].stepName
-                //     ].current.state
-                // },
+
                 currentStep: key,
                 highestStep:
                     key > this.state.highestStep ? key : this.state.highestStep,
@@ -238,20 +221,8 @@ class Wizard extends React.Component {
                 if (this.props.stepRefs[this.props.steps[this.state.currentStep].stepName].current.onClickNext) {
                     await this.props.stepRefs[this.props.steps[this.state.currentStep].stepName].current.onClickNext();
                 }
-                // this.setState(
-                //     {
-                //         wizardData: {
-                //             ...this.state.wizardData,
-                //             [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                //                 this.props.steps[this.state.currentStep].stepName
-                //             ].current.state
-                //         }
-                //     },
-                //     () => {
-                //         this.props.finishButtonClick(this.state.wizardData);
-                //     }
-                // );
-                this.props.finishButtonClick(this.state.wizardData);
+    
+                this.props.finishButtonClick();
             } catch (e) {
 
             }
@@ -302,9 +273,7 @@ class Wizard extends React.Component {
 
 
 
-    setWizardData=(wizardData)=>{
-        this.setState({wizardData});
-    }
+ 
     render() {
 
         return (
@@ -353,8 +322,6 @@ class Wizard extends React.Component {
                                             {typeof prop.component === "function" || typeof prop.component === "object" ? (
                                                 <Component
                                                 ref={stepRefs[prop.stepName]}
-                                                wizardData={this.state.wizardData}
-                                                setWizardData={this.setWizardData}
                                                 {...prop.stepProps}
                                             />
                                             ) : (
@@ -452,8 +419,7 @@ ReactWizard.propTypes = {
             component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
             stepProps: PropTypes.object
         })
-    ).isRequired,
-    wizardData:PropTypes.object
+    ).isRequired
 };
 
 export default ReactWizard;
