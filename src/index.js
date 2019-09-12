@@ -144,12 +144,12 @@ class Wizard extends React.Component {
             }
             if (validationState) {
                 this.setState({
-                    wizardData: {
-                        ...this.state.wizardData,
-                        [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                            this.props.steps[this.state.currentStep].stepName
-                        ].current.state
-                    },
+                    // wizardData: {
+                    //     ...this.state.wizardData,
+                    //     [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
+                    //         this.props.steps[this.state.currentStep].stepName
+                    //     ].current.state
+                    // },
                     currentStep: key,
                     highestStep:
                         key > this.state.highestStep ? key : this.state.highestStep,
@@ -180,12 +180,12 @@ class Wizard extends React.Component {
                 }
                 let key = this.state.currentStep + 1;
                 this.setState({
-                    wizardData: {
-                        ...this.state.wizardData,
-                        [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                            this.props.steps[this.state.currentStep].stepName
-                        ].current.state
-                    },
+                    // wizardData: {
+                    //     ...this.state.wizardData,
+                    //     [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
+                    //         this.props.steps[this.state.currentStep].stepName
+                    //     ].current.state
+                    // },
                     currentStep: key,
                     highestStep:
                         key > this.state.highestStep ? key : this.state.highestStep,
@@ -203,12 +203,12 @@ class Wizard extends React.Component {
         var key = this.state.currentStep - 1;
         if (key >= 0) {
             this.setState({
-                wizardData: {
-                    ...this.state.wizardData,
-                    [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                        this.props.steps[this.state.currentStep].stepName
-                    ].current.state
-                },
+                // wizardData: {
+                //     ...this.state.wizardData,
+                //     [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
+                //         this.props.steps[this.state.currentStep].stepName
+                //     ].current.state
+                // },
                 currentStep: key,
                 highestStep:
                     key > this.state.highestStep ? key : this.state.highestStep,
@@ -238,19 +238,20 @@ class Wizard extends React.Component {
                 if (this.props.stepRefs[this.props.steps[this.state.currentStep].stepName].current.onClickNext) {
                     await this.props.stepRefs[this.props.steps[this.state.currentStep].stepName].current.onClickNext();
                 }
-                this.setState(
-                    {
-                        wizardData: {
-                            ...this.state.wizardData,
-                            [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
-                                this.props.steps[this.state.currentStep].stepName
-                            ].current.state
-                        }
-                    },
-                    () => {
-                        this.props.finishButtonClick(this.state.wizardData);
-                    }
-                );
+                // this.setState(
+                //     {
+                //         wizardData: {
+                //             ...this.state.wizardData,
+                //             [this.props.steps[this.state.currentStep].stepName]: this.props.stepRefs[
+                //                 this.props.steps[this.state.currentStep].stepName
+                //             ].current.state
+                //         }
+                //     },
+                //     () => {
+                //         this.props.finishButtonClick(this.state.wizardData);
+                //     }
+                // );
+                this.props.finishButtonClick(this.state.wizardData);
             } catch (e) {
 
             }
@@ -297,6 +298,12 @@ class Wizard extends React.Component {
         // this.setState({
         //     movingTabStyle: movingTabStyle
         // });
+    }
+
+
+
+    setWizardData=(wizardData)=>{
+        this.setState({wizardData});
     }
     render() {
 
@@ -347,6 +354,7 @@ class Wizard extends React.Component {
                                                 <Component
                                                 ref={stepRefs[prop.stepName]}
                                                 wizardData={this.state.wizardData}
+                                                setWizardData={this.setWizardData}
                                                 {...prop.stepProps}
                                             />
                                             ) : (
@@ -444,7 +452,8 @@ ReactWizard.propTypes = {
             component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
             stepProps: PropTypes.object
         })
-    ).isRequired
+    ).isRequired,
+    wizardData:PropTypes.object
 };
 
 export default ReactWizard;

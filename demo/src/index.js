@@ -12,6 +12,9 @@ const Comp1 = (props, ref) => {
 
 
       return true;
+    },
+    async onClickNext(){
+      props.setWizardData({...props.wizardData,step1:"completed"})
     }
   }
   ))
@@ -83,6 +86,7 @@ const Demo = () => {
       validate
       title="Upload Data"
       headerTextCenter
+      wizardData={{step1:"pending"}}
       // finishButtonClasses="btn-wd btn-info"
       // nextButtonClasses="btn-wd btn-info"
       // previousButtonClasses="btn-wd"
