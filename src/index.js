@@ -348,9 +348,24 @@ class Wizard extends React.Component {
             </Card.Body>
             <Card.Footer>
               <div style={{ float: "right" }}>
+                {this.state.previousButton ? (
+                  <Button
+                    className={classnames({
+                      [this.props.previousButtonClasses]:
+                        this.props.previousButtonClasses !== undefined,
+                    })}
+                    onClick={() => this.previousButtonClick()}
+                    variant={`outline-${this.props.color}`}
+                  >
+                    {this.props.previousButtonText !== undefined
+                      ? this.props.previousButtonText
+                      : "Previous"}
+                  </Button>
+                ) : null}
+
                 {this.state.nextButton ? (
                   <Button
-                    className={classnames("btn-next  rounded-0", {
+                    className={classnames("ml-3", {
                       [this.props.nextButtonClasses]:
                         this.props.nextButtonClasses !== undefined,
                     })}
@@ -364,14 +379,11 @@ class Wizard extends React.Component {
                 ) : null}
                 {this.state.finishButton ? (
                   <Button
-                    className={classnames(
-                      "btn-finish rounded-0 d-inline-block",
-                      {
-                        [this.props.finishButtonClasses]:
-                          this.props.finishButtonClasses !== undefined,
-                      }
-                    )}
-                    onClick={() => this.finishButtonClick()}
+                    className={classnames("ml-3", {
+                      [this.props.finishButtonClasses]:
+                        this.props.finishButtonClasses !== undefined,
+                    })}
+                    onClick={this.finishButtonClick}
                     variant={this.props.color}
                   >
                     {this.props.finishButtonText !== undefined
@@ -380,7 +392,7 @@ class Wizard extends React.Component {
                   </Button>
                 ) : null}
               </div>
-              <div style={{ float: "left" }}>
+              {/* <div style={{ float: "left" }}>
                 {this.state.previousButton ? (
                   <Button
                     className={classnames("btn-previous rounded-0", {
@@ -395,7 +407,7 @@ class Wizard extends React.Component {
                       : "Previous"}
                   </Button>
                 ) : null}
-              </div>
+              </div> */}
             </Card.Footer>
           </Tab.Container>
         </Card>
