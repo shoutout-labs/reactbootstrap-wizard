@@ -294,9 +294,8 @@ class Wizard extends React.Component {
             activeKey={this.state.currentStep}
             onSelect={(k) => this.navigationStepChange(k)}
           >
-            {this.props.title !== undefined ||
-            this.props.description !== undefined ? (
-              <Card.Header
+            <Card.Body>
+              <div
                 className={
                   this.props.headerTextCenter !== undefined ? "text-center" : ""
                 }
@@ -308,7 +307,7 @@ class Wizard extends React.Component {
                 {this.props.description !== undefined ? (
                   <h3 className="description">{this.props.description}</h3>
                 ) : null}
-                <br />
+          
                 <div className="wizard-navigation" ref="navStepsLi">
                   <StepProgress
                     steps={this.props.steps}
@@ -318,9 +317,8 @@ class Wizard extends React.Component {
                     stepButtonClasses={this.props.stepButtonClasses}
                   />
                 </div>
-              </Card.Header>
-            ) : null}
-            <Card.Body>
+              </div>
+
               <Tab.Content>
                 {this.props.steps.map((prop, key) => {
                   const Component = React.forwardRef(prop.component);
@@ -345,8 +343,7 @@ class Wizard extends React.Component {
                   );
                 })}
               </Tab.Content>
-            </Card.Body>
-            <Card.Footer>
+
               <div style={{ float: "right" }}>
                 {this.state.previousButton ? (
                   <Button
@@ -383,7 +380,7 @@ class Wizard extends React.Component {
                       [this.props.finishButtonClasses]:
                         this.props.finishButtonClasses !== undefined,
                     })}
-                    onClick={()=>this.finishButtonClick()}
+                    onClick={() => this.finishButtonClick()}
                     variant={this.props.color}
                   >
                     {this.props.finishButtonText !== undefined
@@ -408,7 +405,7 @@ class Wizard extends React.Component {
                   </Button>
                 ) : null}
               </div> */}
-            </Card.Footer>
+            </Card.Body>
           </Tab.Container>
         </Card>
       </div>

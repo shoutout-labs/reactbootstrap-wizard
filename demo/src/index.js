@@ -94,7 +94,6 @@ const steps = [
       steps={steps}
       navSteps={false}
       validate
-      title="Upload Data"
       headerTextCenter
     
       // finishButtonClasses="btn-wd btn-info"
