@@ -39,7 +39,7 @@ const [state,setState]=useState({count:0});
 const steps = [
   {
     stepName: "Select Files",
-    stepIcon: "fas fa-home",
+    // stepIcon: "fas fa-home",
     component: Comp1,
     stepProps: {
       formData: { test: "test" },
@@ -49,7 +49,7 @@ const steps = [
   },
   {
     stepName: "Select Jobs",
-    stepIcon: "fas fa-surprise",
+    // stepIcon: "fas fa-surprise",
     component: Comp2,
     // stepProps: {
     //     updateFormData,
@@ -62,7 +62,7 @@ const steps = [
   },
   {
     stepName: "Map Headers",
-    stepIcon: "fas fa-swimmer",
+    // stepIcon: "fas fa-swimmer",
     component: Comp3,
     // stepProps: {
     //     updateFormData,
@@ -74,7 +74,7 @@ const steps = [
   },
   {
     stepName: "Map Headers",
-    stepIcon: "fas fa-swimmer",
+    // stepIcon: "fas fa-swimmer",
     component: Comp1,
     // stepProps: {
     //     updateFormData,
@@ -90,7 +90,7 @@ const steps = [
   return <div className="container">
 
     <ReactWizard
-      color="success"
+      color="primary"
       steps={steps}
       navSteps={false}
       validate
