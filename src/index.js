@@ -354,7 +354,7 @@ class Wizard extends React.Component {
                       [this.props.previousButtonClasses]:
                         this.props.previousButtonClasses !== undefined,
                     })}
-                    onClick={() => this.previousButtonClick()}
+                    onClick={this.previousButtonClick}
                     variant={`outline-${this.props.color}`}
                   >
                     {this.props.previousButtonText !== undefined
@@ -369,7 +369,7 @@ class Wizard extends React.Component {
                       [this.props.nextButtonClasses]:
                         this.props.nextButtonClasses !== undefined,
                     })}
-                    onClick={() => this.nextButtonClick()}
+                    onClick={this.nextButtonClick}
                     variant={this.props.color}
                   >
                     {this.props.nextButtonText !== undefined
