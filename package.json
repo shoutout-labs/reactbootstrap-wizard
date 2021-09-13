@@ -1,5 +1,5 @@
 {
-  "name": "reactbootstrap-wizard-rb",
+  "name": "@shoutout-labs/reactbootstrap-wizard-rb",
   "version": "1.0.10",
   "description": "reactbootstrap-wizard React component",
   "main": "lib/index.js",
@@ -34,7 +34,13 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/shoutout-labs/reactbootstrap-wizard.git"
+  },
   "keywords": [
     "react-component"
   ]
