@@ -1,8 +1,40 @@
+.wizard-container .step-container {
+  font-size: 1rem;
+}
+.wizard-container .progress-container .progress {
+  height: 1px;
+  background-color: rgba(112, 112, 112, 0.66);
+  margin-top: 4px;
+}
+
+.wizard-container .step-container .step-progress .nav-link {
+  /* border-radius: 50% !important; */
+  color: #fff;
+  border: 1px solid;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+.wizard-container .step-container .step-progress .nav-link.active {
+  border: none;
+}
+.wizard-container .step-container .step-progress .nav-link span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.wizard-container .step-container .step-progress .step-name {
+  padding-left: 0.875rem;
+}
+
+
+/* 
 .wizard-container .progress-wrapper {
   top: 45%;
   position: absolute;
   width: 75%;
-  left:10%;
+  left: 15%;
 }
 .wizard-container .progress-wrapper .progress {
   height: 5px;
@@ -11,15 +43,24 @@
 .wizard-container .nav-item a {
   display: inline-block;
   background-color: #e9ecef;
-  color:black;
+  color: black;
 }
 
 .wizard-container .nav-item a.checked,
 .wizard-container .nav-item a.active {
   /* background-color: #007bff; */
-  color: #fff;
+  /* color: #fff;
 }
 
 .wizard-container .nav {
   position: relative;
 }
+
+.wizard-container .nav-item .rounded {
+  border-radius: 5rem !important;
+}
+
+.wizard-container .nav-item .step-name::after {
+  color: red;
+  content: ">";
+} */ 

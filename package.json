@@ -1,6 +1,6 @@
 {
   "name": "reactbootstrap-wizard-rb",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "description": "reactbootstrap-wizard React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
     "start": "nwb serve-react-demo",
@@ -21,14 +21,14 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "16.x",
-    "classnames": "2.x.x"
+    "react": "16.x||17.x",
+    "classnames": "2.x.x",
+    "react-bootstrap": "^1.x"
   },
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "nwb": "0.23.x",
-    "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.10",
+    "react": "^16.8.6", 
     "react-dom": "^16.8.6"
   },
   "author": "",
