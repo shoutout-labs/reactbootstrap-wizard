@@ -1,6 +1,6 @@
 {
   "name": "@shoutout-labs/reactbootstrap-wizard-rb",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "reactbootstrap-wizard React component",
   "main": "lib/index.js",
   "module": "es/index.js",
