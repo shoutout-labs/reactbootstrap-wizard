@@ -164,7 +164,7 @@ class Wizard extends React.Component {
       }
     }
   }
-  async nextButtonClick() {
+  nextButtonClick = async () => {
     if (
       (this.props.validate &&
         ((this.props.stepRefs[this.props.steps[this.state.currentStep].stepName]
@@ -198,8 +198,8 @@ class Wizard extends React.Component {
         this.refreshAnimation(key);
       } catch (e) {}
     }
-  }
-  previousButtonClick() {
+  };
+  previousButtonClick = () => {
     var key = this.state.currentStep - 1;
     if (key >= 0) {
       this.setState({
@@ -212,8 +212,8 @@ class Wizard extends React.Component {
       });
       this.refreshAnimation(key);
     }
-  }
-  async finishButtonClick() {
+  };
+  finishButtonClick = async () => {
     if (
       (this.props.validate === false &&
         this.props.finishButtonClick !== undefined) ||
@@ -240,7 +240,7 @@ class Wizard extends React.Component {
         this.props.finishButtonClick();
       } catch (e) {}
     }
-  }
+  };
   refreshAnimation(index) {
     var total = this.props.steps.length;
     var li_width = 100 / total;
@@ -296,7 +296,9 @@ class Wizard extends React.Component {
           >
             <div
               className={
-                this.props.headerTextCenter !== undefined ? "mx-5 text-center" : "mx-5"
+                this.props.headerTextCenter !== undefined
+                  ? "mx-5 text-center"
+                  : "mx-5"
               }
               data-background-color={this.state.color}
             >
@@ -350,8 +352,9 @@ class Wizard extends React.Component {
                     [this.props.previousButtonClasses]:
                       this.props.previousButtonClasses !== undefined,
                   })}
-                  onClick={() => this.previousButtonClick()}
+                  onClick={this.previousButtonClick}
                   variant={`outline-${this.props.color}`}
+                  disabled={this.props.disabled}
                 >
                   {this.props.previousButtonText !== undefined
                     ? this.props.previousButtonText
@@ -365,8 +368,9 @@ class Wizard extends React.Component {
                     [this.props.nextButtonClasses]:
                       this.props.nextButtonClasses !== undefined,
                   })}
-                  onClick={() => this.nextButtonClick()}
+                  onClick={this.nextButtonClick}
                   variant={this.props.color}
+                  disabled={this.props.disabled}
                 >
                   {this.props.nextButtonText !== undefined
                     ? this.props.nextButtonText
@@ -379,8 +383,9 @@ class Wizard extends React.Component {
                     [this.props.finishButtonClasses]:
                       this.props.finishButtonClasses !== undefined,
                   })}
-                  onClick={() => this.finishButtonClick()}
+                  onClick={this.finishButtonClick}
                   variant={this.props.color}
+                  disabled={this.props.disabled}
                 >
                   {this.props.finishButtonText !== undefined
                     ? this.props.finishButtonText
@@ -451,6 +456,8 @@ ReactWizard.propTypes = {
       stepProps: PropTypes.object,
     })
   ).isRequired,
+  //**Disable buttons */
+  disabled:PropTypes.bool
 };
 
 export default ReactWizard;
