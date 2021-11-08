@@ -228,16 +228,17 @@ class Wizard extends React.Component {
         this.props.finishButtonClick !== undefined)
     ) {
       try {
+        let response=null;
         if (
           this.props.stepRefs[this.props.steps[this.state.currentStep].stepName]
             .current.onClickNext
         ) {
-          await this.props.stepRefs[
+          response=await this.props.stepRefs[
             this.props.steps[this.state.currentStep].stepName
           ].current.onClickNext();
         }
 
-        this.props.finishButtonClick();
+        this.props.finishButtonClick(response);
       } catch (e) {}
     }
   };
