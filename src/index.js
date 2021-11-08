@@ -164,7 +164,7 @@ class Wizard extends React.Component {
       }
     }
   }
-  async nextButtonClick() {
+  nextButtonClick = async () => {
     if (
       (this.props.validate &&
         ((this.props.stepRefs[this.props.steps[this.state.currentStep].stepName]
@@ -198,8 +198,8 @@ class Wizard extends React.Component {
         this.refreshAnimation(key);
       } catch (e) {}
     }
-  }
-  previousButtonClick() {
+  };
+  previousButtonClick = () => {
     var key = this.state.currentStep - 1;
     if (key >= 0) {
       this.setState({
@@ -212,8 +212,8 @@ class Wizard extends React.Component {
       });
       this.refreshAnimation(key);
     }
-  }
-  async finishButtonClick() {
+  };
+  finishButtonClick = async () => {
     if (
       (this.props.validate === false &&
         this.props.finishButtonClick !== undefined) ||
@@ -228,19 +228,20 @@ class Wizard extends React.Component {
         this.props.finishButtonClick !== undefined)
     ) {
       try {
+        let response=null;
         if (
           this.props.stepRefs[this.props.steps[this.state.currentStep].stepName]
             .current.onClickNext
         ) {
-          await this.props.stepRefs[
+          response=await this.props.stepRefs[
             this.props.steps[this.state.currentStep].stepName
           ].current.onClickNext();
         }
 
-        this.props.finishButtonClick();
+        this.props.finishButtonClick(response);
       } catch (e) {}
     }
-  }
+  };
   refreshAnimation(index) {
     var total = this.props.steps.length;
     var li_width = 100 / total;
@@ -287,112 +288,113 @@ class Wizard extends React.Component {
   render() {
     return (
       <div className="wizard-container" ref="wizard">
-        <Card className="card card-wizard active" variant={this.state.color}>
+        <div className="card-wizard active" variant={this.state.color}>
           <Tab.Container
             id="left-tabs-example"
             defaultActiveKey="0"
             activeKey={this.state.currentStep}
             onSelect={(k) => this.navigationStepChange(k)}
           >
-            {this.props.title !== undefined ||
-            this.props.description !== undefined ? (
-              <Card.Header
-                className={
-                  this.props.headerTextCenter !== undefined ? "text-center" : ""
-                }
-                data-background-color={this.state.color}
-              >
-                {this.props.title !== undefined ? (
-                  <Card.Title tag="h3">{this.props.title}</Card.Title>
-                ) : null}
-                {this.props.description !== undefined ? (
-                  <h3 className="description">{this.props.description}</h3>
-                ) : null}
-                <br />
-                <div className="wizard-navigation" ref="navStepsLi">
-                  <StepProgress
-                    steps={this.props.steps}
-                    currentStep={this.state.currentStep}
-                    highestStep={this.state.highestStep}
-                    color={this.props.color}
-                    stepButtonClasses={this.props.stepButtonClasses}
-                  />
-                </div>
-              </Card.Header>
-            ) : null}
-            <Card.Body>
-              <Tab.Content>
-                {this.props.steps.map((prop, key) => {
-                  const Component = React.forwardRef(prop.component);
-                  return (
-                    <Tab.Pane
-                      eventKey={key}
-                      key={key}
-                      className={classnames("fade", {
-                        show: this.state.currentStep === key,
-                      })}
-                    >
-                      {typeof prop.component === "function" ||
-                      typeof prop.component === "object" ? (
-                        <Component
-                          ref={stepRefs[prop.stepName]}
-                          {...prop.stepProps}
-                        />
-                      ) : (
-                        <div ref={prop.stepName}>{prop.component}</div>
-                      )}
-                    </Tab.Pane>
-                  );
-                })}
-              </Tab.Content>
-            </Card.Body>
-            <Card.Footer>
-              <div style={{ float: "right" }}>
-                {this.state.previousButton ? (
-                  <Button
-                    className={classnames({
-                      [this.props.previousButtonClasses]:
-                        this.props.previousButtonClasses !== undefined,
-                    })}
-                    onClick={() => this.previousButtonClick()}
-                    variant={`outline-${this.props.color}`}
-                  >
-                    {this.props.previousButtonText !== undefined
-                      ? this.props.previousButtonText
-                      : "Previous"}
-                  </Button>
-                ) : null}
+            <div
+              className={
+                this.props.headerTextCenter !== undefined
+                  ? "mx-5 text-center"
+                  : "mx-5"
+              }
+              data-background-color={this.state.color}
+            >
+              {this.props.title !== undefined ? (
+                <Card.Title tag="h3">{this.props.title}</Card.Title>
+              ) : null}
+              {this.props.description !== undefined ? (
+                <h3 className="description">{this.props.description}</h3>
+              ) : null}
 
-                {this.state.nextButton ? (
-                  <Button
-                    className={classnames("ml-3", {
-                      [this.props.nextButtonClasses]:
-                        this.props.nextButtonClasses !== undefined,
-                    })}
-                    onClick={() => this.nextButtonClick()}
-                    variant={this.props.color}
-                  >
-                    {this.props.nextButtonText !== undefined
-                      ? this.props.nextButtonText
-                      : "Next"}
-                  </Button>
-                ) : null}
-                {this.state.finishButton ? (
-                  <Button
-                    className={classnames("ml-3", {
-                      [this.props.finishButtonClasses]:
-                        this.props.finishButtonClasses !== undefined,
-                    })}
-                    onClick={this.finishButtonClick}
-                    variant={this.props.color}
-                  >
-                    {this.props.finishButtonText !== undefined
-                      ? this.props.finishButtonText
-                      : "Finish"}
-                  </Button>
-                ) : null}
+              <div className="wizard-navigation" ref="navStepsLi">
+                <StepProgress
+                  steps={this.props.steps}
+                  currentStep={this.state.currentStep}
+                  highestStep={this.state.highestStep}
+                  color={this.props.color}
+                  stepButtonClasses={this.props.stepButtonClasses}
+                />
               </div>
-              {/* <div style={{ float: "left" }}>
+            </div>
+
+            <Tab.Content className="my-5">
+              {this.props.steps.map((prop, key) => {
+                const Component = React.forwardRef(prop.component);
+                return (
+                  <Tab.Pane
+                    eventKey={key}
+                    key={key}
+                    className={classnames("fade", {
+                      show: this.state.currentStep === key,
+                    })}
+                  >
+                    {typeof prop.component === "function" ||
+                    typeof prop.component === "object" ? (
+                      <Component
+                        ref={stepRefs[prop.stepName]}
+                        {...prop.stepProps}
+                      />
+                    ) : (
+                      <div ref={prop.stepName}>{prop.component}</div>
+                    )}
+                  </Tab.Pane>
+                );
+              })}
+            </Tab.Content>
+
+            <div style={{ float: "right" }}>
+              {this.state.previousButton ? (
+                <Button
+                  className={classnames({
+                    [this.props.previousButtonClasses]:
+                      this.props.previousButtonClasses !== undefined,
+                  })}
+                  onClick={this.previousButtonClick}
+                  variant={`outline-${this.props.color}`}
+                  disabled={this.props.disabled}
+                >
+                  {this.props.previousButtonText !== undefined
+                    ? this.props.previousButtonText
+                    : "Previous"}
+                </Button>
+              ) : null}
+
+              {this.state.nextButton ? (
+                <Button
+                  className={classnames("ml-3", {
+                    [this.props.nextButtonClasses]:
+                      this.props.nextButtonClasses !== undefined,
+                  })}
+                  onClick={this.nextButtonClick}
+                  variant={this.props.color}
+                  disabled={this.props.disabled}
+                >
+                  {this.props.nextButtonText !== undefined
+                    ? this.props.nextButtonText
+                    : "Next"}
+                </Button>
+              ) : null}
+              {this.state.finishButton ? (
+                <Button
+                  className={classnames("ml-3", {
+                    [this.props.finishButtonClasses]:
+                      this.props.finishButtonClasses !== undefined,
+                  })}
+                  onClick={this.finishButtonClick}
+                  variant={this.props.color}
+                  disabled={this.props.disabled}
+                >
+                  {this.props.finishButtonText !== undefined
+                    ? this.props.finishButtonText
+                    : "Finish"}
+                </Button>
+              ) : null}
+            </div>
+            {/* <div style={{ float: "left" }}>
                 {this.state.previousButton ? (
                   <Button
                     className={classnames("btn-previous rounded-0", {
@@ -408,9 +410,8 @@ class Wizard extends React.Component {
                   </Button>
                 ) : null}
               </div> */}
-            </Card.Footer>
           </Tab.Container>
-        </Card>
+        </div>
       </div>
     );
   }
@@ -456,6 +457,8 @@ ReactWizard.propTypes = {
       stepProps: PropTypes.object,
     })
   ).isRequired,
+  //**Disable buttons */
+  disabled:PropTypes.bool
 };
 
 export default ReactWizard;
